@@ -6,24 +6,6 @@
         <span>{{tab.name}}</span>
       </router-link>
     </li>
-    <!-- <li class="films">
-      <a href="/cinemas.html">
-        <i class="iconfont icon-cinemas"></i>
-        <span>影院</span>
-      </a>
-    </li>
-    <li class="films">
-      <a href="#/films/nowPlaying">
-        <i class="iconfont icon-sales"></i>
-        <span>特惠</span>
-      </a>
-    </li>
-    <li class="films">
-      <a href="/center.html">
-        <i class="iconfont icon-center"></i>
-        <span>我的</span>
-      </a>
-    </li>-->
   </ul>
 </template>
 
