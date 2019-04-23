@@ -1,11 +1,13 @@
 <template>
-  <div>
+  <keep-alive>
     <router-view></router-view>
-  </div>
+  </keep-alive>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "app"
+};
 </script>
 
 <style lang="less">

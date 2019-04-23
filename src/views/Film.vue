@@ -2,7 +2,7 @@
   <div class="film-list">
     <Banner :banners="bannerList"></Banner>
 
-    <div class="tabs-bar-wrapper">
+    <div class="tabs-bar-wrapper" :class="{fixed:isFixedTabs}">
       <div class="tabs-bar">
         <ul class="tabs-nav">
           <li
@@ -36,6 +36,7 @@ export default {
 
   data() {
     return {
+      isFixedTabs: false,
       bannerList: [],
       filmTypes: [
         {
@@ -89,6 +90,16 @@ export default {
           }
         });
     },
+    // 滚动事件
+    onScroll() {
+      let scrollTop = document.documentElement.scrollTop;
+
+      if (scrollTop >= 210) {
+        this.isFixedTabs = true;
+      } else {
+        this.isFixedTabs = false;
+      }
+    },
     /**
      * 切换影片类型
      * @param {Object} item 当前需要切换的类型对象
@@ -101,6 +112,14 @@ export default {
 
   created() {
     this.getBannerList();
+  },
+
+  activated() {
+    window.addEventListener("scroll", this.onScroll);
+  },
+
+  deactivated() {
+    window.removeEventListener("scroll", this.onScroll);
   }
 };
 </script>
@@ -135,7 +154,10 @@ export default {
   overflow-x: hidden;
   background: #fff;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
+  &.fixed {
+    position: fixed;
+    top: 0;
+  }
   .tabs-bar {
     .border-1-bottom;
     height: 49px;
