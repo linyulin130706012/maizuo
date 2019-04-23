@@ -8,7 +8,7 @@
 export default {
   methods: {
     get() {
-      alert(this.$route.path.split("/film/")[1]);
+      // alert(this.$route.path.split("/film/")[1]);
     }
   },
 
