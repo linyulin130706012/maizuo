@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+window.isLogin = false;
+
 Vue.use(VueRouter);
 
-export default new VueRouter({
+const router = new VueRouter({
   routes: [{
       path: '*',
       redirect: '/films/nowPlaying'
@@ -51,5 +53,43 @@ export default new VueRouter({
       path: '/city',
       component: () => import('./views/City.vue')
     },
+    {
+      path: '/card',
+      component: () => import('./views/Card.vue'),
+      beforeEnter: (to, from, next) => {
+        if (!window.isLogin) {
+          next({
+            path: '/login',
+            query: {
+              redirect: to.path
+            }
+          });
+        } else {
+          next();
+        }
+      }
+    },
+    {
+      path: '/money',
+      component: () => import('./views/Money.vue'),
+      beforeEnter: (to, from, next) => {
+        if (!window.isLogin) {
+          next({
+            path: '/login',
+            query: {
+              redirect: to.path
+            }
+          });
+        } else {
+          next();
+        }
+      }
+    },
+    {
+      path: '/login',
+      component: () => import('./views/Login.vue')
+    }
   ]
-})
+});
+
+export default router;
