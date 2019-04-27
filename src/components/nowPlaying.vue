@@ -10,7 +10,7 @@
             <div class="info">
               <div class="film-name info-col">
                 <span class="name">{{film.name}}</span>
-                <span class="item">{{film.item.name}}</span>
+                <!-- <span class="item">{{film.item.name}}</span> -->
               </div>
               <div class="film-grade info-col" style="visibility: visible;">
                 <span class="label">观众评分</span>
@@ -54,14 +54,15 @@ export default {
   methods: {
     getList() {
       axios
-        .get("https://m.maizuo.com/gateway", {
-          params: {
-            cityId: 440300,
-            pageNum: this.pageNum,
-            pageSize: this.pageSize,
-            type: 1,
-            k: 5318342
-          },
+        // .get("https://m.maizuo.com/gateway", {
+        .get("/api/getFilm", {
+          // params: {
+          //   cityId: 440300,
+          //   pageNum: this.pageNum,
+          //   pageSize: this.pageSize,
+          //   type: 1,
+          //   k: 5318342
+          // },
           headers: {
             "X-Client-Info":
               '{"a":"3000","ch":"1002","v":"5.0.4","e":"15546493441941325218476"}',
@@ -70,7 +71,7 @@ export default {
         })
         .then(res => {
           let data = res.data;
-
+          console.log(data);
           if (data.status == 0) {
             this.total = data.data.total;
             this.filmList = this.filmList.concat(data.data.films);
